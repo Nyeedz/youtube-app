@@ -12,8 +12,8 @@ class SafeJsonObject: NSObject {
     override func setValue(_ value: Any?, forKey key: String) {
         let uppercasedFirstCharacter = String(describing: key.characters.first!).uppercased()
         
-        let range = key.startIndex..<key.index(key.startIndex, offsetBy: 1)
-        let selectorString = key.replacingCharacters(in: range, with: uppercasedFirstCharacter)
+        let range = NSMakeRange(0, 1)
+        let selectorString = NSString(string: key).replacingCharacters(in: range, with: uppercasedFirstCharacter)
         
         let selector = NSSelectorFromString("set\(selectorString):")
         let responds = self.responds(to: selector)
